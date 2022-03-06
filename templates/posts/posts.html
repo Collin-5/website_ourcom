@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Posts{% endblock title %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-"></div>
+    <div class="col-md-4">
+      <div class="search" style="width: fit-content">
+        <form  method="GET">
+          <div class="div" style="display: flex; align-items:center">
+            <div class="input">
+              {{form.as_p}}
+            </div>
+            <div class="button mt-3">
+              <input class="btn btn-primary" type="submit" value="Search">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+    <div class="row">
+        
+      <div class="col-md-10">
+        <p class="text-success my-3">Posts</p>
+      </div>
+      <div class="col-md-2 my-2">
+        <a class="btn btn-primary" href="{% url 'posts:add_post' %}">Add new Post</a>
+      </div>
+    </div>
+
+    
+    <div class="row bg-light">
+      {% if posts %}
+        {% for post in posts %}
+        
+        <div class="col-md-4">
+          <a href="{% url 'posts:post_details' id=post.pk %}" class="text-dark">
+            <div class="card mb-4 box-shadow">
+              <div class="card-body">
+                <h2 style="font-size:15px; font-weight: bold">{{post.title|truncatechars:50}}</h2>
+                <image src="{{post.image.url}}" class="img-responsive" style="width: 300px; height: 100px"  alt="image" />
+                <h2 style="font-size:15px">{{post.text|truncatechars:50}}....</h2>
+                <div class="d-flex justify-content-between align-items-center">
+                  <small class="text-muted">{{post.author}}</small>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+      {% else %}
+        <div>
+          <h4>post not found!</h4>
+        </div>
+      {% endif %}
+    </div>
+     
+  </div
+
+{% endblock content %}

@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Post Details{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-10">
+            
+            <div>
+                <h1>{{item.title}}</h1>
+                <p class="text-success">Author: {{post.author}}</p>
+                <p class="text-success">Created at: {{post.created_at}}</p>
+                <p>{{post.text}}</p>
+                <img src="{{post.image.url}}" class="img-responsive" style="width: 600px" alt="image"/>
+            </div>
+        
+            <h3 class="text-info my-3"> Comments</h3>
+            <div class="comments">
+                {% if post.comments.all %}
+                {% for comment in post.comments.all %}
+                <div class="comment ml-5 mb-5 card">
+                    <div class="card-header">
+                        <p class="text">Author: {{comment.author}}</p>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">{{comment.comment}}</p>
+                    </div>
+                    <div class="card-footer">
+                        <p class="text-success">Last update: {{comment.updated_at}}</p>
+                    </div>
+                </div>
+                {% endfor %}
+
+                {% else %}
+                <div class="comment ml-5 mb-5">
+                    <p class="text-alert">No Comments Yet!</p>
+                    
+                </div>
+
+                {% endif %}
+            </div>
+
+            {% if user.is_authenticated %}
+            <div class="col-md-8 card mb-4  mt-3 ">
+            <div class="card-body">
+                <h3>Leave a comment</h3>
+                <form method="post" style="margin-top: 1.3em;">
+                  {{ comment_form|crispy }}
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
+                </form>
+              </div>
+            </div>
+              {% endif %}
+        </div>
+        <div class="side col-md-2 my-3">
+            <a href="{% url 'posts:allposts' %}"> <<-- back to posts</a>
+            <br>
+            {% if user.is_authenticated and user == post.author %}
+            <a class="btn btn-warning my-1" href="{% url 'posts:update_post' id=post.pk %}">Update Post</a>
+            <br>
+            <a class="btn btn-danger my-1" href="{% url 'posts:delete_post' id=post.pk %}">Delete Post</a>
+            {% endif %}
+        </div>
+
+    </div>
+</div>
+{% endblock content %}

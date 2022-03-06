@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Add post{% endblock title %}
+
+{% block content %}
+ <div class="container">
+     <h1 class="text-center">Delete Post</h1>
+     <div class="addfrom mb-3">
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <p class="text-center">Are you sure you want to delete this post?</p>
+            <div class="button text-center">
+                <a class="btn btn-secondary my-2" href="{% url 'posts:allposts' %}">Cancel</a>
+                <button class="btn btn-danger" type="submit">Delete</button>
+                
+            </div>
+        </form>
+     </div>
+ </div>
+    
+{% endblock content %}
