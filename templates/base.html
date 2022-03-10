@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -8,6 +9,13 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <!-- font awsome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:wght@300&display=swap" rel="stylesheet">
+    <!-- css -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
   </head>
   <body>
     {% block header %}
@@ -47,9 +55,93 @@
         </div>
     </nav>
     {% endblock header %}
-    
     {% block content %}
     {% endblock content %}
+    {% block footer %}
+    <!-- Footer -->
+<footer class="footer pt-4 mt-0" style="background-color: #263238; color: whitesmoke">
+
+  <!-- Footer Links -->
+  <div class="container-fluid text-center text-md-left">
+
+    <!-- Grid row -->
+    <div class="row">
+
+      <!-- Grid column -->
+      <div class="col-md-6 mt-md-0 ">
+
+        <!-- Content -->
+        <h5 class="text-uppercase">Our Community</h5>
+        <p>Share, connect, solve, help sovle help one grow</p>
+
+      </div>
+      <!-- Grid column -->
+
+      <hr class="">
+
+      <!-- Grid column -->
+      <div class="col-md-3 mb-md-0 mb-3">
+
+        <!-- Links -->
+        <h5 class="text-uppercase">Links</h5>
+
+        <ul class="">
+          <li>
+            <a href="{% url 'posts:allposts' %}">Questions</a>
+          </li>
+          <li>
+            <a href="#!">Our Blog</a>
+          </li>
+          <li>
+            <a href="{% url 'posts:allposts' %}">Questions</a>
+          </li>
+          <li>
+            <a href="#!">Sign Up</a>
+          </li>
+        </ul>
+
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-3 mb-md-0 mb-3">
+
+        <!-- Links -->
+        <h5 class="text-uppercase">Links</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a href="#!">Link 1</a>
+          </li>
+          <li>
+            <a href="#!">Link 2</a>
+          </li>
+          <li>
+            <a href="#!">Link 3</a>
+          </li>
+          <li>
+            <a href="#!">Link 4</a>
+          </li>
+        </ul>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Links -->
+
+  <!-- Copyright -->
+  <div class="text-center p-4" style="background-color: #181f22; color: whitesmoke">© 2022 Copyright:
+    <a href="{% url 'home' %}">OurCom</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+    {% endblock footer%}
       
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -3,10 +3,11 @@
 {% block title %}Sign Up{% endblock title %}
 
 {% block content %}
-<h2 class="text-center">Sign Up</h2>
-<div class="container">
 
-    <div class="sign d-flex justify-content-center">
+<div class="container" style="height: 100vh;">
+    <h2 class="text-center mt-5">Sign Up</h2>
+
+    <div class="sign d-flex justify-content-center" style="margin-top: 20px;">
         <form class="mb-5" method="post">
             {% csrf_token %}
             <div class="signup" style="width:fit-content">

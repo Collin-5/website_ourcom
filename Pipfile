@@ -12,6 +12,7 @@ pytz = "*"
 sqlalchemy = "*"
 pillow = "*"
 attr = "*"
+django-jazzmin = "*"
 
 [dev-packages]
 

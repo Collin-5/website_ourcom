@@ -8,3 +8,4 @@ psycopg2-binary==2.9.3
 pytz==2021.3
 SQLAlchemy==1.4.31
 sqlparse==0.4.2
+django-jazzmin

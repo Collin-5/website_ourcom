@@ -16,7 +16,6 @@ class Post(models.Model):
     text = models.TextField(_("text"))
     image = models.ImageField(
         _("image"),
-        blank=True,
         upload_to='uploads/',
         help_text=_("can be empty")
     )
@@ -58,3 +57,24 @@ class Comment(models.Model):
 
     def get_absolute_url(self):
         return reverse('posts')
+
+class Reply(models.Model):
+    comment = models.ForeignKey(Comment,
+        on_delete=models.CASCADE,
+        related_name="replys"
+    )
+    text = models.TextField(max_length=500)
+    author = models.ForeignKey(
+        get_user_model(),
+        on_delete=models.CASCADE,
+    )
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return self.text[:20]
+
+    class Meta:
+        ordering = ['created_at']
+

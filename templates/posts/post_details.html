@@ -3,38 +3,99 @@
 {% block title %}Post Details{% endblock title %}
 
 {% block content %}
-<div class="container">
+<div class="container" style="color:black">
     <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-10 my-5">
             
-            <div>
-                <h1>{{item.title}}</h1>
-                <p class="text-success">Author: {{post.author}}</p>
-                <p class="text-success">Created at: {{post.created_at}}</p>
-                <p>{{post.text}}</p>
-                <img src="{{post.image.url}}" class="img-responsive" style="width: 600px" alt="image"/>
+            <div class="card " >
+                <div class="card-header">
+                    <p >Author: <span class="text-success"> {{post.author}}</span> Asked the question on <span class="text-success"> {{post.created_at}}</span></p>
+                </div>
+                <div class="card body" style="text-align: justify; padding-left: 10px">
+                    <h2 class="card-title">{{post.title}}</h2>
+                    <p class="card-text">{{post.text}}</p>
+                    
+                </div>
+                <img src="{{post.image.url}}" class="img-responsive" style="width: 100%" alt="image"/>
             </div>
         
-            <h3 class="text-info my-3"> Comments</h3>
+            <h3 class="text-info my-3"><i class="fa fa-comments" aria-hidden="true"></i> Comments</h3>
             <div class="comments">
                 {% if post.comments.all %}
                 {% for comment in post.comments.all %}
                 <div class="comment ml-5 mb-5 card">
                     <div class="card-header">
-                        <p class="text">Author: {{comment.author}}</p>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="text">Author: {{comment.author}}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p> Last Update: <span class="text-success">{{comment.updated_at}}</span></p>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body">
                         <p class="card-text">{{comment.comment}}</p>
                     </div>
                     <div class="card-footer">
-                        <p class="text-success">Last update: {{comment.updated_at}}</p>
+                        
+
+                        {% if user.is_authenticated and user == comment.author %}
+                        <div class="row">
+                            <div class="col-md-10">       
+                            </div>
+                            <div class="col-md-2">
+                                <a href="{{comment.pk}}/update" class="btn btn-outline-warning btn-sm" type="button"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                <a href="{{comment.pk}}/delete" class="btn btn-outline-danger btn-sm" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                        
+                        {% endif %}
+                        <div class="rep">
+                            
+                            {% if user.is_authenticated %}
+                                            
+                                
+                                    <form method="post" style="margin-top: 1.3em;">
+                                        {% csrf_token %}
+                                        <div class="row">
+                                        <div class="col-md-8">
+                                            {{ reply_form|crispy }}
+                                            <input type="hidden" name="form_type" value="{{comment.id}}">          
+                                        </div>
+                                        <div class="col-md-4">
+                                            <button type="submit" class="btn btn-info  btn-sm mt-1">Reply</button>
+                                        </div>
+                                        </div>
+                                    </form>
+                                
+                            {% else %}
+                                <p>Login to reply</p>
+                            {% endif %}
+                        </div>
+                        
+                    <h4 class="text-info"><i class="fa fa-reply" aria-hidden="true">Replies</i></h4>
+                        
                     </div>
+                    {%for r in comment.replys.all %}
+                        <div class="replys ml-5 mr-5">
+                            
+                            <div class="card my-2 shadow-sm">
+                                <div class="card-head ml-2 mt-2">
+                                    <p>{{r.author}}:</p>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text">{{r.text}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
                 {% endfor %}
 
                 {% else %}
                 <div class="comment ml-5 mb-5">
-                    <p class="text-alert">No Comments Yet!</p>
+                    <p style="color: whitesmoke;" class="text-alert">No Comments Yet! <span style="font-size: 28px"> &#x1F625; </span></p>
                     
                 </div>
 
@@ -42,28 +103,46 @@
             </div>
 
             {% if user.is_authenticated %}
-            <div class="col-md-8 card mb-4  mt-3 ">
+            <div class="col-md-8 card mb-4  mt-3 " style="color: black;">
             <div class="card-body">
-                <h3>Leave a comment</h3>
+                <h3>Leave an answer</h3>
                 <form method="post" style="margin-top: 1.3em;">
+                    {% csrf_token %}
                   {{ comment_form|crispy }}
-                  {% csrf_token %}
-                  <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
+                  <input type="hidden" name="form_type" value="comment">
+                  <button type="submit" class="btn btn-info  btn-lg">Submit</button>
                 </form>
               </div>
             </div>
               {% endif %}
         </div>
         <div class="side col-md-2 my-3">
-            <a href="{% url 'posts:allposts' %}"> <<-- back to posts</a>
-            <br>
-            {% if user.is_authenticated and user == post.author %}
-            <a class="btn btn-warning my-1" href="{% url 'posts:update_post' id=post.pk %}">Update Post</a>
-            <br>
-            <a class="btn btn-danger my-1" href="{% url 'posts:delete_post' id=post.pk %}">Delete Post</a>
-            {% endif %}
+            <div class="card">
+                <div class="card-header">
+                    <a href="{% url 'posts:allposts' %}"> <<--posts</a>
+                    <br>
+                    {% if user.is_authenticated and user == post.author %}
+                    <a class="btn btn-warning my-1" href="{% url 'posts:update_post' id=post.pk %}">Update Post</a>
+                    <br>
+                    <a class="btn btn-danger my-1" href="{% url 'posts:delete_post' id=post.pk %}">Delete Post</a>
+                    {% endif %}
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title text-info">Our Blog ckeck out our recent posts</h2>
+                    <p class="text"></p>
+                </div>
+                <div class="card-footer">
+                    <h3 class="text-info">
+                        OurCom
+                    </h3>
+                </div>
+            </div>
         </div>
 
     </div>
 </div>
+
+<script>
+    
+</script>
 {% endblock content %}

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post, Comment
+from .models import Post, Comment, Reply
 
 class AddPostForm(forms.ModelForm):
 
@@ -16,6 +16,11 @@ class CommentForm(forms.ModelForm):
         model = Comment
         fields = ['comment']
 
+class CommentUForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['comment']
+
 class search_post(forms.Form):
     q = forms.CharField()
 
@@ -25,3 +30,16 @@ class search_post(forms.Form):
         self.fields['q'].widget.attrs.update(
             {'class': 'form-control'}
         )
+
+class ReplyForm(forms.ModelForm):
+    class Meta:
+        model = Reply
+        widgets = {
+          'text': forms.Textarea(attrs={'rows':1, 'cols':5}),
+        }
+        fields = ['text']
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['text'].label = ""
+        

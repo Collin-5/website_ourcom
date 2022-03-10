@@ -32,6 +32,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -154,3 +156,26 @@ AUTH_USER_MODEL = 'users.CustomUser'
 # redirections
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
+
+JAZZMIN_SETTINGS = {
+    "site_title": "OurCom Admin",
+    "site_header": "OurCom",
+    "site_brand": "OurCom",
+    "site_icon": None,
+    "welcome_sign": "Welcome to the OurCom",
+    "copyright": "OurCom LTD",
+    "site_logo": "",
+        "topmenu_links": [
+
+        # Url that gets reversed (Permissions can be added)
+        {"name": "Home",  "url": "admin:index", "permissions": ["auth.view_user"]},
+
+
+
+        # model admin to link to (Permissions checked against model)
+        {"model": "auth.User"},
+
+        # App with dropdown menu to all its models pages (Permissions checked against models)
+        {"app": "books"},
+    ],
+}
