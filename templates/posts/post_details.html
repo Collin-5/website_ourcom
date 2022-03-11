@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% load crispy_forms_tags %}
 {% block title %}Post Details{% endblock title %}
 
@@ -27,10 +28,12 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-md-6">
-                                <p class="text">Author: {{comment.author}}</p>
+                                <img src="{% static '/images/avatr2.jpg' %}" alt="image" style="width: 50px; border-radius: 50%">
+                                <p class="text">{{comment.author}}</p>
+                                <p> <span class="text-success">{{comment.updated_at}}</span></p>
                             </div>
                             <div class="col-md-6">
-                                <p> Last Update: <span class="text-success">{{comment.updated_at}}</span></p>
+                                
                             </div>
                         </div>
                     </div>
@@ -74,19 +77,30 @@
                             {% endif %}
                         </div>
                         
+                    {% if comment.replys.all%}
                     <h4 class="text-info"><i class="fa fa-reply" aria-hidden="true">Replies</i></h4>
+                    {% endif %}
                         
                     </div>
                     {%for r in comment.replys.all %}
                         <div class="replys ml-5 mr-5">
                             
                             <div class="card my-2 shadow-sm">
-                                <div class="card-head ml-2 mt-2">
-                                    <p>{{r.author}}:</p>
+                                <div class="row d-flex align-items-center">
+                                    <div class="col-md-2">
+                                        <div class="card-head mt-2">
+                                            <img src="{% static '/images/avatr2.jpg' %}" alt="image" style="width: 40px; border-radius: 50%">
+                                            <p class=" p-1 text-success" >{{r.author}}:</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-10">
+                                        <div class="card-bod m-2" style="text-align: start; padding: 2px">
+                                            <p class="card-text ">{{r.text}}</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="card-body">
-                                    <p class="card-text">{{r.text}}</p>
-                                </div>
+                                
                             </div>
                         </div>
                     {% endfor %}

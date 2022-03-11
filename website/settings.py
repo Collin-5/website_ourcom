@@ -164,7 +164,7 @@ JAZZMIN_SETTINGS = {
     "site_icon": None,
     "welcome_sign": "Welcome to the OurCom",
     "copyright": "OurCom LTD",
-    "site_logo": "",
+    "site_logo": None,
         "topmenu_links": [
 
         # Url that gets reversed (Permissions can be added)
