@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+ <div class="container">
+    <div class="row ">
+        <div class="col-md-12 mt-3">
+            <h1 class="text-center text-info" style="font-family: Noto serif display"> OurCom</h1>
+            <p class="text-center">By helping others we are making this world a better place. Let this platform encourage you to assist and support others whenever you can..</p>
+        </div>
+    </div>
+    <div class="row d-flex justify-content-center" style="display: flex; align-items: center">
+        <div class="col-md-4">
+            <div class="image" style="width: 90px;">
+                <img style="border-radius: 20px; height: 400px; width: auto" class="img-responsive" src="{% static 'images/ourh.png' %}" alt="" >
+            </div>
+        </div>
+        <div class="col-md-8 ">
+            <h3 class="text-info" style="font-family: Noto serif display" >Share</h3>
+            <p>We learn and understand more when we try to teach and explain to others what we understand about a particular concept.</p>
+        </div>
+    </div>
+
+    <div class="row d-flex justify-content-center" style="display: flex; align-items: center">
+        
+        <div class="col-md-6 ">
+            <h3 class="text-info" style="font-family: Noto serif display" >Observe</h3>
+            <p>Dont make the same mistakes other people already did . Learn from other people mistakes and how they tackled the problems they encountered.</p>
+        </div>
+        <div class="col-md-6">
+            <div class="image" style="width: 90px;">
+                <img style="border-radius: 20px; height: 400px; width: auto" class="img-responsive" src="{% static 'images/ours.png' %}" alt="" >
+            </div>
+        </div>
+    </div>
+
+    <div class="row d-flex justify-content-center" style="display: flex; align-items: center">
+        <div class="col-md-4">
+            <div class="image" style="width: 90px;">
+                <img style="border-radius: 20px; height: 400px; width: auto" class="img-responsive" src="{% static 'images/ourcr.png' %}" alt="" >
+            </div>
+        </div>
+        <div class="col-md-8 ">
+            <h3 class="text-info" style="font-family: Noto serif display" >Reach Out</h3>
+            <p >Look for answers when you are stuck dont forget to ask because a problem shared i a half way solved. remember this is our community (OurCom)</p>
+        </div>
+    </div>
+
+    <h1 class="text-center mt-5 text-info" style="font-family: Noto serif display">Project Details</h1>
+    <div class="row mb-5">
+        
+        <div  class="col-md-6">
+            <h3 style="font-family: Noto serif display" class="text-center">Location</h3>
+            <ul>
+                <li style="font-size: 28px;">Name: OurCom</li>
+                <li style="font-size: 28px;">Github: <a href="https://github.com/Collin-5/website_ourcom"><i  class="fa fa-github " aria-hidden="true"></i></a></li>
+            </ul>
+
+        </div>
+        <div class="col-md-6">
+            <h3 style="font-family: Noto serif display" class="text-center">Developer</h3>
+            <ul>
+                <li style="font-size: 28px;">Name: Collins Otieno</li>
+                <li style="font-size: 28px;">Github: <a href="https://github.com/Collin-5"><i  class="fa fa-github " aria-hidden="true"></i></a></li>
+            </ul>
+        </div>
+    </div>
+ </div>
+{% endblock content %}

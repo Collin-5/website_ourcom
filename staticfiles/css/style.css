@@ -1,0 +1,9 @@
+body{
+    background-image: url('../images/back1.jpg');
+    color: whitesmoke;
+
+}
+
+.comments img{
+    width: 90px;
+}
