@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
+import django_heroku
 # import environ
 import dj_database_url
 
@@ -170,3 +171,6 @@ JAZZMIN_SETTINGS = {
         {"app": "books"},
     ],
 }
+
+# heroku
+django_heroku.settings(locals())
