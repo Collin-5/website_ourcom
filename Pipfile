@@ -21,6 +21,7 @@ whitenoise = "*"
 dj-database-url = "*"
 psycopg2 = "*"
 django-heroku = "*"
+youtube-search-python = "*"
 
 [dev-packages]
 
