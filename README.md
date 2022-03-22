@@ -4,7 +4,8 @@ Ourcom is a community where people can share ideas and also find answers to some
 ![alt text](https://github.com/Collin-5/website_ourcom/blob/master/static/images/ourcr.png?raw=true)
 
 ##### Live site
-[OurCom](http://ourcom-web.herokuapp.com/)
+[OurCom](http://ourcom-web.herokuapp.com/)  
+
 [Blog](http://ourcom-web.herokuapp.com/)
 
 
